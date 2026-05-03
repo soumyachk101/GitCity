@@ -573,7 +573,7 @@ export default memo(function InstancedBuildings({
       if ((window as any).__spireCursor) return;
       // Throttle hover raycast to ~8Hz
       const now = performance.now();
-      if (now - lastMoveTime < 125) return;
+      if (now - lastMoveTime < 200) return;
       lastMoveTime = now;
       const id = raycastInstance(e.clientX, e.clientY);
       document.body.style.cursor = id !== null ? "pointer" : "auto";

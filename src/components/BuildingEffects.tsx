@@ -54,7 +54,7 @@ export const NeonOutline = memo(function NeonOutline({
 // ─── Particle Aura ───────────────────────────────────────────
 // Floating particles around the building
 
-const AURA_COUNT = 60;
+const AURA_COUNT = 30;
 
 export const ParticleAura = memo(function ParticleAura({
   width,

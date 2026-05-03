@@ -200,7 +200,7 @@ function SkyDome({ stops }: { stops: [number, string][] }) {
 
   return (
     <mesh ref={meshRef} material={mat} renderOrder={-1} onBeforeRender={onBeforeRender}>
-      <sphereGeometry args={[3500, 32, 48]} />
+      <sphereGeometry args={[3500, 16, 24]} />
     </mesh>
   );
 }
@@ -1316,7 +1316,7 @@ function Ground({ color, grid1, grid2 }: { color: string; grid1: string; grid2: 
         <planeGeometry args={[20000, 20000]} />
         <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.15} roughness={0.95} />
       </mesh>
-      <gridHelper args={[4000, 200, grid1, grid2]} position={[0, -0.5, 0]} />
+      <gridHelper args={[4000, 100, grid1, grid2]} position={[0, -0.5, 0]} />
     </group>
   );
 }
@@ -2155,7 +2155,7 @@ function CityExposure({ cityEnergy }: { cityEnergy: number }) {
     const current = gl.toneMappingExposure;
     const target = targetRef.current;
     if (Math.abs(current - target) > 0.001) {
-      gl.toneMappingExposure += (target - current) * 0.02;
+      gl.toneMappingExposure += (target - current) * 0.01;
     }
   });
 
@@ -2194,7 +2194,7 @@ export default function CityCanvas({ buildings, plazas, decorations, river, brid
   }, [buildings, focusedBuilding, focusedBuildingB]);
   const t = THEMES[themeIndex] ?? THEMES[0];
   const showPerf = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("perf");
-  const [dpr, setDpr] = useState(1);
+  const [dpr, setDpr] = useState(0.75);
   const [bloomEnabled, setBloomEnabled] = useState(false);
   const flyPosRef = useRef(new THREE.Vector3());
 
@@ -2217,8 +2217,8 @@ export default function CityCanvas({ buildings, plazas, decorations, river, brid
       {showPerf && <Stats />}
       <CityExposure cityEnergy={cityEnergy ?? 1} />
       <PerformanceMonitor
-        onIncline={() => { setDpr(1.25); setBloomEnabled(true); }}
-        onDecline={() => { setDpr(0.75); setBloomEnabled(false); }}
+        onIncline={() => { setDpr(Math.min(1.0, window.devicePixelRatio)); setBloomEnabled(true); }}
+        onDecline={() => { setDpr(0.6); setBloomEnabled(false); }}
       />
       <fog attach="fog" args={[t.fogColor, t.fogNear, t.fogFar]} key={`fog-${themeIndex}`} />
 
@@ -2403,9 +2403,10 @@ export default function CityCanvas({ buildings, plazas, decorations, river, brid
         <EffectComposer multisampling={0}>
           <Bloom
             mipmapBlur
-            luminanceThreshold={1}
-            luminanceSmoothing={0.3}
-            intensity={1.2 * Math.max(0.1, cityEnergy ?? 1)}
+            luminanceThreshold={1.2}
+            luminanceSmoothing={0.4}
+            intensity={0.8 * Math.max(0.1, cityEnergy ?? 1)}
+            resolutionScale={0.5}
           />
         </EffectComposer>
       )}

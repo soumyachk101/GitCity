@@ -31,9 +31,9 @@ const DISC_CFG = [
 ] as const;
 
 // Per-theme particle counts (conservative)
-const STAR_COUNTS = [900, 0, 600, 300] as const; // Midnight + Neon + Emerald faint
-const DUST_COUNTS = [0, 0, 400, 0] as const; // Neon dust
-const FIREFLY_COUNTS = [0, 0, 0, 280] as const; // Emerald pixels
+const STAR_COUNTS = [500, 0, 350, 200] as const; // Midnight + Neon + Emerald faint
+const DUST_COUNTS = [0, 0, 200, 0] as const; // Neon dust
+const FIREFLY_COUNTS = [0, 0, 0, 150] as const; // Emerald pixels
 
 // Per-theme star distances (closer than SKY_RADIUS for a tighter feel)
 const STAR_DIST = [900, 0, 850, 900] as const;
@@ -516,13 +516,13 @@ export default memo(function ThemeSkyFX({ themeIndex, theme }: Props) {
         const cfg = DISC_CFG[themeIndex];
         if (themeIndex === 0) return {
             // Midnight: crisp moon with crater noise and narrow alpha edge
-            discTex: makeCrispMoonTexture(512),
+            discTex: makeCrispMoonTexture(256),
             discScale: cfg.scale, discOpacity: 0.95,
             discColor: new THREE.Color(1, 1, 1),
         };
         if (themeIndex === 1) return {
             // Sunset: warm orange sun
-            discTex: makeSunsetDiscTexture(512),
+            discTex: makeSunsetDiscTexture(256),
             discScale: cfg.scale, discOpacity: 0.88,
             discColor: new THREE.Color(1, 1, 1),
         };

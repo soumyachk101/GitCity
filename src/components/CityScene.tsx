@@ -132,7 +132,7 @@ export default function CityScene({
   // Emit focus info for focused buildings (throttled to 5Hz)
   useFrame(({ camera, clock, size }) => {
     const elapsed = clock.elapsedTime;
-    if (elapsed - lastFocusUpdate.current < 0.2) return;
+    if (elapsed - lastFocusUpdate.current < 0.33) return;
     lastFocusUpdate.current = elapsed;
 
     if (!onFocusInfo || (!focusedLower && !focusedBLower)) return;
