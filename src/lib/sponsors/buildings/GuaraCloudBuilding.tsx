@@ -228,17 +228,18 @@ export default function GuaraCloudBuilding({
   const mTxRow = Math.floor((mRows - TEXT_BM.length) / 2);
   const mFront = useMemo(() =>
     createGlassTex(MIN_COLS, mRows, 44, themeWindowLit, windowOff, themeFace, themeAccent, TEXT_BM, txCol, mTxRow),
-    [themeWindowLit, windowOff, themeFace, themeAccent],
+    [themeWindowLit, windowOff, themeFace, themeAccent, mRows, txCol, mTxRow],
   );
   const mFrontB = useMemo(() =>
     createGlassTex(MIN_COLS, mRows, 102, themeWindowLit, windowOff, themeFace, themeAccent, TEXT_BM, txCol, mTxRow),
-    [themeWindowLit, windowOff, themeFace, themeAccent],
+    [themeWindowLit, windowOff, themeFace, themeAccent, mRows, txCol, mTxRow],
   );
   const mSide = useMemo(() =>
     createGlassTex(5, mRows, 85, themeWindowLit, windowOff, themeFace),
-    [themeWindowLit, windowOff, themeFace],
+    [themeWindowLit, windowOff, themeFace, mRows],
   );
 
+  // Base glass — no text
   const bFront = useMemo(() =>
     createGlassTex(MIN_COLS, 9, 76, themeWindowLit, windowOff, themeFace),
     [themeWindowLit, windowOff, themeFace],
@@ -248,6 +249,7 @@ export default function GuaraCloudBuilding({
     [themeWindowLit, windowOff, themeFace],
   );
 
+  // Top glass — no text
   const tFront = useMemo(() =>
     createGlassTex(MIN_COLS, 7, 58, themeWindowLit, windowOff, themeFace),
     [themeWindowLit, windowOff, themeFace],
@@ -257,8 +259,17 @@ export default function GuaraCloudBuilding({
     [themeWindowLit, windowOff, themeFace],
   );
 
-  const allTex = [mFront, mFrontB, mSide, bFront, bSide, tFront, tSide];
-  useEffect(() => () => { for (const t of allTex) t.dispose(); }, allTex);
+  useEffect(() => {
+    return () => {
+      mFront.dispose();
+      mFrontB.dispose();
+      mSide.dispose();
+      bFront.dispose();
+      bSide.dispose();
+      tFront.dispose();
+      tSide.dispose();
+    };
+  }, [mFront, mFrontB, mSide, bFront, bSide, tFront, tSide]);
 
   const guara3D = useMemo(() => createGuaraMascot(themeAccent), [themeAccent]);
 

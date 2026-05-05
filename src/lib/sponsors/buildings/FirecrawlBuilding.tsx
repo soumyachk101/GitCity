@@ -321,6 +321,9 @@ function AnimatedFlameFacade({
       toneMapped: false,
       transparent: true,
     });
+    return m;
+  }, [frames, emColor]);
+
   useEffect(() => {
     matRef.current = material;
   }, [material]);

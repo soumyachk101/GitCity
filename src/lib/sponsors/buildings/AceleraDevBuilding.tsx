@@ -191,8 +191,8 @@ export default function AceleraDevBuilding({ themeAccent, themeWindowLit, themeF
   const txCol = Math.floor((MIN_COLS - TXT_W) / 2);
 
   // Mid section glass — has "ACELERA" / "DEV" text
-  const midFront = useMemo(() => createGlassTex(MIN_COLS, 18, 44, themeWindowLit, windowOff, themeFace, themeAccent, TEXT_BM, txCol, 2), [themeWindowLit, windowOff, themeFace, themeAccent]);
-  const midBack = useMemo(() => createGlassTex(MIN_COLS, 18, 111, themeWindowLit, windowOff, themeFace, themeAccent, TEXT_BM, txCol, 2), [themeWindowLit, windowOff, themeFace, themeAccent]);
+  const midFront = useMemo(() => createGlassTex(MIN_COLS, 18, 44, themeWindowLit, windowOff, themeFace, themeAccent, TEXT_BM, txCol, 2), [themeWindowLit, windowOff, themeFace, themeAccent, txCol]);
+  const midBack = useMemo(() => createGlassTex(MIN_COLS, 18, 111, themeWindowLit, windowOff, themeFace, themeAccent, TEXT_BM, txCol, 2), [themeWindowLit, windowOff, themeFace, themeAccent, txCol]);
   const midSide = useMemo(() => createGlassTex(8, 18, 88, themeWindowLit, windowOff, themeFace), [themeWindowLit, windowOff, themeFace]);
 
   // Base glass — no text
@@ -203,8 +203,17 @@ export default function AceleraDevBuilding({ themeAccent, themeWindowLit, themeF
   const topFront = useMemo(() => createGlassTex(8, 8, 77, themeWindowLit, windowOff, themeFace), [themeWindowLit, windowOff, themeFace]);
   const topSide = useMemo(() => createGlassTex(6, 8, 99, themeWindowLit, windowOff, themeFace), [themeWindowLit, windowOff, themeFace]);
 
-  const allTex = [midFront, midBack, midSide, baseFront, baseSide, topFront, topSide];
-  useEffect(() => () => { for (const t of allTex) t.dispose(); }, allTex);
+  useEffect(() => {
+    return () => {
+      midFront.dispose();
+      midBack.dispose();
+      midSide.dispose();
+      baseFront.dispose();
+      baseSide.dispose();
+      topFront.dispose();
+      topSide.dispose();
+    };
+  }, [midFront, midBack, midSide, baseFront, baseSide, topFront, topSide]);
 
   const bolt3D = useMemo(() => createLightningBolt(), []);
   const emC = themeWindowLit[0] ?? "#fff";
