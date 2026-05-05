@@ -2176,11 +2176,11 @@ export default function CityCanvas({ buildings, plazas, decorations, river, brid
     if (focusedBuilding && focusedBuildingB) {
       const pairId = `${focusedBuilding}-${focusedBuildingB}`;
       if (prevComparePairRef.current !== pairId) {
-        setIsCompareCinematicPlaying(true);
+        setTimeout(() => setIsCompareCinematicPlaying(true), 0);
         prevComparePairRef.current = pairId;
       }
     } else {
-      setIsCompareCinematicPlaying(false);
+      setTimeout(() => setIsCompareCinematicPlaying(false), 0);
       prevComparePairRef.current = "";
     }
   }, [focusedBuilding, focusedBuildingB]);

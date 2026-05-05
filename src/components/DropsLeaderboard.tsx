@@ -32,7 +32,7 @@ export default function DropsLeaderboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
+    setTimeout(() => setLoading(true), 0);
     fetch(`/api/drops/leaderboard?period=${period}`)
       .then((r) => r.json())
       .then((data) => {
