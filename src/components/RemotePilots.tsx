@@ -83,9 +83,7 @@ export default function RemotePilots({
   });
 
   // tick used to trigger re-render when pilot list changes
-  void tick;
-
-  const pilots = Array.from(pilotsRef.current.entries());
+  const pilots = useMemo(() => Array.from(pilotsRef.current.entries()), [tick, pilotsRef]);
 
   return (
     <group>

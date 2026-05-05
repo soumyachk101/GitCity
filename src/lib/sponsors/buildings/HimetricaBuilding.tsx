@@ -188,16 +188,25 @@ export default function HimetricaBuilding({ themeAccent, themeWindowLit, themeFa
 
   const txCol = Math.floor((MIN_COLS - TXT_W) / 2);
 
-  const mainFront = useMemo(() => createGlassTex(MIN_COLS, 22, 44, themeWindowLit, windowOff, themeFace, themeAccent, TEXT_BM, txCol, 1), [themeWindowLit, windowOff, themeFace, themeAccent]);
-  const mainFrontB = useMemo(() => createGlassTex(MIN_COLS, 22, 111, themeWindowLit, windowOff, themeFace, themeAccent, TEXT_BM, txCol, 1), [themeWindowLit, windowOff, themeFace, themeAccent]);
+  const mainFront = useMemo(() => createGlassTex(MIN_COLS, 22, 44, themeWindowLit, windowOff, themeFace, themeAccent, TEXT_BM, txCol, 1), [themeWindowLit, windowOff, themeFace, themeAccent, txCol]);
+  const mainFrontB = useMemo(() => createGlassTex(MIN_COLS, 22, 111, themeWindowLit, windowOff, themeFace, themeAccent, TEXT_BM, txCol, 1), [themeWindowLit, windowOff, themeFace, themeAccent, txCol]);
   const mainSide = useMemo(() => createGlassTex(9, 22, 88, themeWindowLit, windowOff, themeFace), [themeWindowLit, windowOff, themeFace]);
   const towerFront = useMemo(() => createGlassTex(6, 16, 55, themeWindowLit, windowOff, themeFace), [themeWindowLit, windowOff, themeFace]);
   const towerSide = useMemo(() => createGlassTex(7, 16, 77, themeWindowLit, windowOff, themeFace), [themeWindowLit, windowOff, themeFace]);
   const crownF = useMemo(() => createGlassTex(8, 3, 99, themeWindowLit, windowOff, themeFace), [themeWindowLit, windowOff, themeFace]);
   const crownS = useMemo(() => createGlassTex(5, 3, 120, themeWindowLit, windowOff, themeFace), [themeWindowLit, windowOff, themeFace]);
 
-  const allTex = [mainFront, mainFrontB, mainSide, towerFront, towerSide, crownF, crownS];
-  useEffect(() => () => { for (const t of allTex) t.dispose(); }, allTex);
+  useEffect(() => {
+    return () => {
+      mainFront.dispose();
+      mainFrontB.dispose();
+      mainSide.dispose();
+      towerFront.dispose();
+      towerSide.dispose();
+      crownF.dispose();
+      crownS.dispose();
+    };
+  }, [mainFront, mainFrontB, mainSide, towerFront, towerSide, crownF, crownS]);
 
   const logo3D = useMemo(() => createAnalyticsLogo(themeAccent), [themeAccent]);
   const emC = themeWindowLit[0] ?? "#fff";

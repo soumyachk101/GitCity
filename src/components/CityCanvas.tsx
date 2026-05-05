@@ -636,8 +636,8 @@ function AirplaneFlight({ onExit, onHud, onPause, pauseSignal = 0, hasOverlay = 
 
   // Contrail / speed trail
   const TRAIL_POINTS = 48;
-  const trailPositions = useRef(new Float32Array(TRAIL_POINTS * 3));
-  const trailColors = useRef(new Float32Array(TRAIL_POINTS * 4));
+  const trailPositions = useMemo(() => new Float32Array(TRAIL_POINTS * 3), []);
+  const trailColors = useMemo(() => new Float32Array(TRAIL_POINTS * 4), []);
   const trailGeomRef = useRef<THREE.BufferGeometry>(null);
   const trailInit = useRef(false);
 
@@ -796,7 +796,9 @@ function AirplaneFlight({ onExit, onHud, onPause, pauseSignal = 0, hasOverlay = 
 
   // Keyboard
   const hasOverlayRef = useRef(hasOverlay);
-  hasOverlayRef.current = hasOverlay;
+  useEffect(() => {
+    hasOverlayRef.current = hasOverlay;
+  }, [hasOverlay]);
 
   useEffect(() => {
     const doPause = () => {
@@ -1042,8 +1044,8 @@ function AirplaneFlight({ onExit, onHud, onPause, pauseSignal = 0, hasOverlay = 
     <>
       <line>
         <bufferGeometry ref={trailGeomRef}>
-          <bufferAttribute attach="attributes-position" args={[trailPositions.current, 3]} count={TRAIL_POINTS} />
-          <bufferAttribute attach="attributes-color" args={[trailColors.current, 4]} count={TRAIL_POINTS} />
+          <bufferAttribute attach="attributes-position" args={[trailPositions, 3]} count={TRAIL_POINTS} />
+          <bufferAttribute attach="attributes-color" args={[trailColors, 4]} count={TRAIL_POINTS} />
         </bufferGeometry>
         <lineBasicMaterial transparent vertexColors depthWrite={false} blending={THREE.AdditiveBlending} linewidth={2} />
       </line>
@@ -1062,7 +1064,7 @@ function AirplaneFlight({ onExit, onHud, onPause, pauseSignal = 0, hasOverlay = 
           minDistance={20}
           maxDistance={300}
           maxPolarAngle={Math.PI / 2.1}
-          target={pos.current.toArray() as [number, number, number]}
+          target={useMemo(() => pos.current.toArray() as [number, number, number], [])}
         />
       )}
     </>
@@ -1862,9 +1864,12 @@ function RiverText({ river }: { river: CityRiver }) {
 
     const tex = new THREE.CanvasTexture(c);
     tex.colorSpace = THREE.SRGBColorSpace;
-    texRef.current = tex;
     return tex;
   }, [fontReady]);
+
+  useEffect(() => {
+    texRef.current = texture;
+  }, [texture]);
 
   useEffect(() => {
     return () => { texRef.current?.dispose(); };

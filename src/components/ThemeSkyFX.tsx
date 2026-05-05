@@ -734,7 +734,7 @@ export default memo(function ThemeSkyFX({ themeIndex, theme }: Props) {
         const height = skyD(260);   // reduced from 420 — ring is less dominating
         // 160 segments = smoother ring, openEnded
         return new THREE.CylinderGeometry(radius, radius, height, 160, 1, true);
-    }, [themeIndex, skyScale]);
+    }, [themeIndex, skyScale, skyD]);
 
     const { auroraRingMat0, auroraRingMat1 } = useMemo(() => {
         if (themeIndex !== 3) return { auroraRingMat0: null, auroraRingMat1: null };
@@ -773,7 +773,7 @@ export default memo(function ThemeSkyFX({ themeIndex, theme }: Props) {
     const sunsetHazeGeo = useMemo(() => {
         if (themeIndex !== 1) return null;
         return new THREE.SphereGeometry(skyD(1200), 48, 24);
-    }, [themeIndex, skyScale]);
+    }, [themeIndex, skyScale, skyD]);
 
     const sunsetHazeMat = useMemo(() => {
         if (themeIndex !== 1) return null;
@@ -792,7 +792,7 @@ export default memo(function ThemeSkyFX({ themeIndex, theme }: Props) {
     const sunsetCirrusGeo = useMemo(() => {
         if (themeIndex !== 1) return null;
         return new THREE.SphereGeometry(skyD(1300), 48, 24);
-    }, [themeIndex, skyScale]);
+    }, [themeIndex, skyScale, skyD]);
 
     const sunsetCirrusMat = useMemo(() => {
         if (themeIndex !== 1) return null;
@@ -891,7 +891,7 @@ export default memo(function ThemeSkyFX({ themeIndex, theme }: Props) {
             Math.sin(elevRad) * d,
             -Math.sin(azRad) * Math.cos(elevRad) * d
         );
-    }, [themeIndex, skyScale]);
+    }, [themeIndex, skyScale, skyD]);
 
     // Runtime disc scale (angular size preserved as depth changes)
     const discDisplayScale = skyD(discScale);

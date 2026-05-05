@@ -38,9 +38,12 @@ export function AdsDashboard() {
   } = useAdsData({ filters, onToast: addToast });
 
   // Track whether we've ever received data (for skeleton vs stale)
-  const hasDataRef = useRef(false);
-  if (ads.length > 0) hasDataRef.current = true;
-  const isFirstLoad = !hasDataRef.current;
+  const [hasData, setHasData] = useState(false);
+  const isFirstLoad = !hasData && ads.length === 0;
+
+  if (ads.length > 0 && !hasData) {
+    setHasData(true);
+  }
 
   // UI state
   const [expandedId, setExpandedId] = useState<string | null>(null);
