@@ -263,15 +263,15 @@ export default function AbacatePayBuilding({
   const s2TxRow = Math.floor((s2Rows - TEXT_BM.length) / 2);
   const s2Front = useMemo(() =>
     createGlassTex(MIN_COLS, s2Rows, 51, themeWindowLit, windowOff, themeFace, themeAccent, TEXT_BM, txCol, s2TxRow),
-    [themeWindowLit, windowOff, themeFace, themeAccent],
+    [themeWindowLit, windowOff, themeFace, themeAccent, s2Rows, txCol, s2TxRow],
   );
   const s2FrontB = useMemo(() =>
     createGlassTex(MIN_COLS, s2Rows, 107, themeWindowLit, windowOff, themeFace, themeAccent, TEXT_BM, txCol, s2TxRow),
-    [themeWindowLit, windowOff, themeFace, themeAccent],
+    [themeWindowLit, windowOff, themeFace, themeAccent, s2Rows, txCol, s2TxRow],
   );
   const s2Side = useMemo(() =>
     createGlassTex(5, s2Rows, 88, themeWindowLit, windowOff, themeFace),
-    [themeWindowLit, windowOff, themeFace],
+    [themeWindowLit, windowOff, themeFace, s2Rows],
   );
 
   // S1 textures — plain windows (logo is a separate plane)
@@ -316,8 +316,22 @@ export default function AbacatePayBuilding({
 
   const logoTex = useMemo(() => createLogoTexture(themeAccent, 64), [themeAccent]);
 
-  const allTex = [s1Front, s1Side, s2Front, s2FrontB, s2Side, s3Front, s3Side, towerFront, towerSide, crownF, crownS, logoTex];
-  useEffect(() => () => { for (const t of allTex) t.dispose(); }, allTex);
+  useEffect(() => {
+    return () => {
+      s1Front.dispose();
+      s1Side.dispose();
+      s2Front.dispose();
+      s2FrontB.dispose();
+      s2Side.dispose();
+      s3Front.dispose();
+      s3Side.dispose();
+      towerFront.dispose();
+      towerSide.dispose();
+      crownF.dispose();
+      crownS.dispose();
+      logoTex.dispose();
+    };
+  }, [s1Front, s1Side, s2Front, s2FrontB, s2Side, s3Front, s3Side, towerFront, towerSide, crownF, crownS, logoTex]);
 
   const logo3D = useMemo(() => createAvocadoLogo(themeAccent), [themeAccent]);
 

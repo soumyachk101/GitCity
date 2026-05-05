@@ -117,10 +117,11 @@ export function useFlyPresence(
       }
     });
 
+    const currentPilots = pilotsRef.current;
     return () => {
       ws.close();
       socketRef.current = null;
-      pilotsRef.current.clear();
+      currentPilots.clear();
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

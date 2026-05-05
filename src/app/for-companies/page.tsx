@@ -171,7 +171,7 @@ export default async function ForCompaniesPage() {
             This is what you see when a developer applies. Real data, verified by GitHub.
           </p>
           <div className="flex justify-center">
-            <Link href="/hire/srizzon" className="btn-press border-[3px] border-lime/30 px-6 py-3 text-xs text-lime transition-colors hover:border-lime/50 hover:bg-lime/5">
+            <Link href="/hire/soumyachk101" className="btn-press border-[3px] border-lime/30 px-6 py-3 text-xs text-lime transition-colors hover:border-lime/50 hover:bg-lime/5">
               View example profile &#8599;
             </Link>
           </div>

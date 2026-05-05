@@ -209,15 +209,15 @@ export default function ViralDayBuilding({
 
   const screenFront = useMemo(() =>
     createGlassTex(MIN_COLS, screenRows, 42, themeWindowLit, windowOff, themeFace, themeAccent, TEXT_BM, txCol, txRow),
-    [themeWindowLit, windowOff, themeFace, themeAccent],
+    [themeWindowLit, windowOff, themeFace, themeAccent, screenRows, txCol, txRow],
   );
   const screenBack = useMemo(() =>
     createGlassTex(MIN_COLS, screenRows, 99, themeWindowLit, windowOff, themeFace, themeAccent, TEXT_BM, txCol, txRow),
-    [themeWindowLit, windowOff, themeFace, themeAccent],
+    [themeWindowLit, windowOff, themeFace, themeAccent, screenRows, txCol, txRow],
   );
   const screenSide = useMemo(() =>
     createGlassTex(8, screenRows, 77, themeWindowLit, windowOff, themeFace),
-    [themeWindowLit, windowOff, themeFace],
+    [themeWindowLit, windowOff, themeFace, screenRows],
   );
 
   // Base glass — no text
@@ -228,8 +228,17 @@ export default function ViralDayBuilding({
   const crownFront = useMemo(() => createGlassTex(10, 3, 88, themeWindowLit, windowOff, themeFace), [themeWindowLit, windowOff, themeFace]);
   const crownSide = useMemo(() => createGlassTex(5, 3, 111, themeWindowLit, windowOff, themeFace), [themeWindowLit, windowOff, themeFace]);
 
-  const allTex = [screenFront, screenBack, screenSide, baseFront, baseSide, crownFront, crownSide];
-  useEffect(() => () => { for (const t of allTex) t.dispose(); }, allTex);
+  useEffect(() => {
+    return () => {
+      screenFront.dispose();
+      screenBack.dispose();
+      screenSide.dispose();
+      baseFront.dispose();
+      baseSide.dispose();
+      crownFront.dispose();
+      crownSide.dispose();
+    };
+  }, [screenFront, screenBack, screenSide, baseFront, baseSide, crownFront, crownSide]);
 
   const logo3D = useMemo(() => createPlayLogo(themeAccent), [themeAccent]);
   const emC = themeWindowLit[0] ?? "#fff";

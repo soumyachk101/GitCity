@@ -5,7 +5,7 @@ Thanks for your interest in contributing! Here's how to get started.
 ## Setup
 
 ```bash
-git clone https://github.com/srizzon/git-city.git
+git clone https://github.com/soumyachk101/GitCity.git
 cd git-city
 npm install
 cp .env.example .env.local
@@ -94,7 +94,7 @@ Start with an emoji + type. Single line, present tense, concise.
 
 ## Good First Issues
 
-Look for issues labeled [`good first issue`](https://github.com/srizzon/git-city/labels/good%20first%20issue). These are scoped tasks that don't require deep knowledge of the codebase.
+Look for issues labeled [`good first issue`](https://github.com/soumyachk101/GitCity/labels/good%20first%20issue). These are scoped tasks that don't require deep knowledge of the codebase.
 
 ## Project Structure
 

@@ -42,8 +42,10 @@ export function useDailies(session: Session | null, hasClaimed: boolean) {
     if (fetchedRef.current) return;
 
     fetchedRef.current = true;
-    setLoading(true);
-    fetchDailies().finally(() => setLoading(false));
+    setTimeout(() => {
+      setLoading(true);
+      fetchDailies().finally(() => setLoading(false));
+    }, 0);
   }, [session, hasClaimed, fetchDailies]);
 
   const refresh = useCallback(async () => {

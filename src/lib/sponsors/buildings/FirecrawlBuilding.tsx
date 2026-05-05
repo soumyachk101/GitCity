@@ -321,9 +321,9 @@ function AnimatedFlameFacade({
       toneMapped: false,
       transparent: true,
     });
-    matRef.current = m;
-    return m;
-  }, [frames, emColor]);
+  useEffect(() => {
+    matRef.current = material;
+  }, [material]);
 
   useEffect(() => () => { material.dispose(); }, [material]);
 
@@ -458,13 +458,17 @@ export default function FirecrawlBuilding({
     [themeWindowLit, windowOff, themeFace],
   );
 
-  useEffect(() => () => {
-    for (const t of flameFramesFront) t.dispose();
-    for (const t of flameFramesBack) t.dispose();
-    for (const t of flameFramesLeft) t.dispose();
-    for (const t of flameFramesRight) t.dispose();
-    bFront.dispose(); bSide.dispose();
-    tFront.dispose(); tSide.dispose();
+  useEffect(() => {
+    return () => {
+      for (const t of flameFramesFront) t.dispose();
+      for (const t of flameFramesBack) t.dispose();
+      for (const t of flameFramesLeft) t.dispose();
+      for (const t of flameFramesRight) t.dispose();
+      bFront.dispose();
+      bSide.dispose();
+      tFront.dispose();
+      tSide.dispose();
+    };
   }, [flameFramesFront, flameFramesBack, flameFramesLeft, flameFramesRight, bFront, bSide, tFront, tSide]);
 
   const voxelFlame = useMemo(() => createVoxelFlame(themeAccent), [themeAccent]);

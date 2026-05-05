@@ -129,12 +129,12 @@ function SupportContent() {
               A star helps more developers discover Git City. Takes one click.
             </p>
             <a
-              href="https://github.com/srizzon/git-city"
+              href="https://github.com/soumyachk101/GitCity"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-press mt-4 inline-block border-2 border-border px-5 py-2 text-xs text-muted transition-colors hover:border-border-light hover:text-cream"
             >
-              github.com/srizzon/git-city
+              github.com/soumyachk101/GitCity
             </a>
           </div>
 
@@ -194,12 +194,12 @@ function SupportContent() {
               <span style={{ color: ACCENT }}>05.</span> GitHub Sponsors
             </p>
             <a
-              href="https://github.com/sponsors/srizzon"
+              href="https://github.com/sponsors/soumyachk101"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-press mt-4 inline-block border-2 border-border px-5 py-2 text-xs text-muted transition-colors hover:border-border-light hover:text-cream"
             >
-              github.com/sponsors/srizzon
+              github.com/sponsors/soumyachk101
             </a>
           </div>
 

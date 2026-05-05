@@ -588,7 +588,7 @@ function HomeContent({ resolvedSponsors }: HomeContentProps) {
 
   // Fetch GitHub star count + Discord member count + Arcade player count
   useEffect(() => {
-    fetch("https://api.github.com/repos/srizzon/git-city")
+    fetch("https://api.github.com/repos/soumyachk101/GitCity")
       .then((r) => r.ok ? r.json() : null)
       .then((d) => { if (d?.stargazers_count != null) setStarCount(d.stargazers_count); })
       .catch(() => { });
@@ -2938,7 +2938,7 @@ function HomeContent({ resolvedSponsors }: HomeContentProps) {
           {/* Desktop: GitHub + Discord */}
           {starCount != null && (
             <a
-              href="https://github.com/srizzon/git-city"
+              href="https://github.com/soumyachk101/GitCity"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:flex items-center gap-1.5 border-[3px] border-border bg-bg/70 px-2.5 py-1 text-[10px] backdrop-blur-sm transition-colors hover:border-border-light"
@@ -2994,8 +2994,8 @@ function HomeContent({ resolvedSponsors }: HomeContentProps) {
                 {codingPanelOpen && (() => {
                   // Creator always first, then up to 4 others
                   const allDevs = Array.from(liveByLogin.values());
-                  const creator = allDevs.find((d) => d.githubLogin.toLowerCase() === "srizzon");
-                  const others = allDevs.filter((d) => d.githubLogin.toLowerCase() !== "srizzon");
+                  const creator = allDevs.find((d) => d.githubLogin.toLowerCase() === "soumyachk101");
+                  const others = allDevs.filter((d) => d.githubLogin.toLowerCase() !== "soumyachk101");
                   const displayDevs = [
                     ...(creator ? [creator] : []),
                     ...others.slice(0, creator ? 4 : 5),
@@ -3009,7 +3009,7 @@ function HomeContent({ resolvedSponsors }: HomeContentProps) {
                       </div>
                       <div>
                         {displayDevs.map((dev) => {
-                          const isCreator = dev.githubLogin.toLowerCase() === "srizzon";
+                          const isCreator = dev.githubLogin.toLowerCase() === "soumyachk101";
                           return (
                             <button
                               key={dev.githubLogin}
@@ -3491,7 +3491,7 @@ function HomeContent({ resolvedSponsors }: HomeContentProps) {
                 <span className="text-xs" style={{ color: theme.accent }}>&#8594;</span>
               </a>
               <a
-                href="https://github.com/srizzon/git-city"
+                href="https://github.com/soumyachk101/GitCity"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}
@@ -3596,7 +3596,7 @@ function HomeContent({ resolvedSponsors }: HomeContentProps) {
                   const label = target >= 1000 ? `${target / 1000}K` : target.toLocaleString();
                   return (
                     <a
-                      href="https://github.com/srizzon/git-city"
+                      href="https://github.com/soumyachk101/GitCity"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block w-full max-w-sm group"

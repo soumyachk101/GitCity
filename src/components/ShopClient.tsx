@@ -1332,7 +1332,7 @@ export default function ShopClient({
                         handleEquip(zoneKey, itemId);
                       } else if (isGitHubStar && !isOwned) {
                         if (starVerifyStep === "idle") {
-                          window.open("https://github.com/srizzon/git-city", "_blank");
+                          window.open("https://github.com/soumyachk101/GitCity", "_blank");
                           setStarVerifyStep("opened");
                         } else if (starVerifyStep === "opened") {
                           verifyGitHubStar();

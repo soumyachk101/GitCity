@@ -3,7 +3,7 @@ import { createServerSupabase } from "@/lib/supabase-server";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import { rateLimit } from "@/lib/rate-limit";
 
-const REPO_OWNER = "srizzon";
+const REPO_OWNER = "soumyachk101";
 const REPO_NAME = "git-city";
 
 function ghHeaders(): HeadersInit {

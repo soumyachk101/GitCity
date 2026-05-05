@@ -251,15 +251,15 @@ export default function PlowBuilding({
   const mTxRow = Math.floor((mRows - TEXT_BM.length) / 2);
   const mFront = useMemo(() =>
     createGlassTex(MIN_COLS, mRows, 51, themeWindowLit, windowOff, themeFace, themeAccent, TEXT_BM, txCol, mTxRow),
-    [themeWindowLit, windowOff, themeFace, themeAccent],
+    [themeWindowLit, windowOff, themeFace, themeAccent, mRows, txCol, mTxRow],
   );
   const mFrontB = useMemo(() =>
     createGlassTex(MIN_COLS, mRows, 107, themeWindowLit, windowOff, themeFace, themeAccent, TEXT_BM, txCol, mTxRow),
-    [themeWindowLit, windowOff, themeFace, themeAccent],
+    [themeWindowLit, windowOff, themeFace, themeAccent, mRows, txCol, mTxRow],
   );
   const mSide = useMemo(() =>
     createGlassTex(5, mRows, 88, themeWindowLit, windowOff, themeFace),
-    [themeWindowLit, windowOff, themeFace],
+    [themeWindowLit, windowOff, themeFace, mRows],
   );
 
   // Base textures
@@ -282,8 +282,17 @@ export default function PlowBuilding({
     [themeWindowLit, windowOff, themeFace],
   );
 
-  const allTex = [mFront, mFrontB, mSide, bFront, bSide, tFront, tSide];
-  useEffect(() => () => { for (const t of allTex) t.dispose(); }, allTex);
+  useEffect(() => {
+    return () => {
+      mFront.dispose();
+      mFrontB.dispose();
+      mSide.dispose();
+      bFront.dispose();
+      bSide.dispose();
+      tFront.dispose();
+      tSide.dispose();
+    };
+  }, [mFront, mFrontB, mSide, bFront, bSide, tFront, tSide]);
 
   const mascot3D = useMemo(() => createOpenClawMascot(themeAccent), [themeAccent]);
 

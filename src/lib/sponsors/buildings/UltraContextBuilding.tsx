@@ -225,7 +225,7 @@ function AnimatedLogoFacade({
   const matRef = useRef<THREE.MeshStandardMaterial | null>(null);
 
   const material = useMemo(() => {
-    const m = new THREE.MeshStandardMaterial({
+    return new THREE.MeshStandardMaterial({
       map: frames[0],
       emissive: emColor,
       emissiveMap: frames[0],
@@ -233,11 +233,15 @@ function AnimatedLogoFacade({
       toneMapped: false,
       transparent: true,
     });
-    matRef.current = m;
-    return m;
   }, [frames, emColor]);
 
-  useEffect(() => () => { material.dispose(); }, [material]);
+  useEffect(() => {
+    matRef.current = material;
+    return () => {
+      material.dispose();
+      matRef.current = null;
+    };
+  }, [material]);
 
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime() + phaseOffset;

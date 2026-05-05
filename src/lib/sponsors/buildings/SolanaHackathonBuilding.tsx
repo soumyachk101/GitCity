@@ -242,15 +242,15 @@ export default function SolanaHackathonBuilding({
   const mTxRow = Math.floor((mRows - TEXT_BM_BOT.length) / 2);
   const mFront = useMemo(() =>
     createGlassTex(MIN_COLS, mRows, 77, themeWindowLit, windowOff, themeFace, themeAccent, TEXT_BM_BOT, txColBot, mTxRow),
-    [themeWindowLit, windowOff, themeFace, themeAccent],
+    [themeWindowLit, windowOff, themeFace, themeAccent, mRows, txColBot, mTxRow],
   );
   const mFrontB = useMemo(() =>
     createGlassTex(MIN_COLS, mRows, 133, themeWindowLit, windowOff, themeFace, themeAccent, TEXT_BM_BOT, txColBot, mTxRow),
-    [themeWindowLit, windowOff, themeFace, themeAccent],
+    [themeWindowLit, windowOff, themeFace, themeAccent, mRows, txColBot, mTxRow],
   );
   const mSide = useMemo(() =>
     createGlassTex(5, mRows, 91, themeWindowLit, windowOff, themeFace),
-    [themeWindowLit, windowOff, themeFace],
+    [themeWindowLit, windowOff, themeFace, mRows],
   );
 
   // Base section: plain windows
@@ -268,19 +268,29 @@ export default function SolanaHackathonBuilding({
   const tTxRow = Math.floor((tRows - TEXT_BM_TOP.length) / 2);
   const tFront = useMemo(() =>
     createGlassTex(MIN_COLS, tRows, 88, themeWindowLit, windowOff, themeFace, themeAccent, TEXT_BM_TOP, txColTop, tTxRow),
-    [themeWindowLit, windowOff, themeFace, themeAccent],
+    [themeWindowLit, windowOff, themeFace, themeAccent, tRows, txColTop, tTxRow],
   );
   const tFrontB = useMemo(() =>
     createGlassTex(MIN_COLS, tRows, 111, themeWindowLit, windowOff, themeFace, themeAccent, TEXT_BM_TOP, txColTop, tTxRow),
-    [themeWindowLit, windowOff, themeFace, themeAccent],
+    [themeWindowLit, windowOff, themeFace, themeAccent, tRows, txColTop, tTxRow],
   );
   const tSide = useMemo(() =>
     createGlassTex(4, tRows, 99, themeWindowLit, windowOff, themeFace),
-    [themeWindowLit, windowOff, themeFace],
+    [themeWindowLit, windowOff, themeFace, tRows],
   );
 
-  const allTex = [mFront, mFrontB, mSide, bFront, bSide, tFront, tFrontB, tSide];
-  useEffect(() => () => { for (const t of allTex) t.dispose(); }, allTex);
+  useEffect(() => {
+    return () => {
+      mFront.dispose();
+      mFrontB.dispose();
+      mSide.dispose();
+      bFront.dispose();
+      bSide.dispose();
+      tFront.dispose();
+      tFrontB.dispose();
+      tSide.dispose();
+    };
+  }, [mFront, mFrontB, mSide, bFront, bSide, tFront, tFrontB, tSide]);
 
   const trophy3D = useMemo(() => createTrophy(themeAccent), [themeAccent]);
 

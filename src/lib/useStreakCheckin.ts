@@ -63,25 +63,26 @@ export function useStreakCheckin(
     if (typeof window !== "undefined" && sessionStorage.getItem(CACHE_KEY)) return;
 
     fetchedRef.current = true;
-    setLoading(true);
-
-    fetch("/api/checkin", { method: "POST" })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data: StreakData | null) => {
-        if (data) {
-          setStreakData(data);
-          if (typeof window !== "undefined") {
-            sessionStorage.setItem(CACHE_KEY, JSON.stringify(data));
+    setTimeout(() => {
+      setLoading(true);
+      fetch("/api/checkin", { method: "POST" })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((data: StreakData | null) => {
+          if (data) {
+            setStreakData(data);
+            if (typeof window !== "undefined") {
+              sessionStorage.setItem(CACHE_KEY, JSON.stringify(data));
+            }
+            if (data.unseen_count > 0) {
+              fetch("/api/achievements/mark-seen", { method: "POST" }).catch(() => {});
+            }
           }
-          if (data.unseen_count > 0) {
-            fetch("/api/achievements/mark-seen", { method: "POST" }).catch(() => {});
-          }
-        }
-      })
-      .catch(() => {
-        fetchedRef.current = false; // allow retry on error
-      })
-      .finally(() => setLoading(false));
+        })
+        .catch(() => {
+          fetchedRef.current = false; // allow retry on error
+        })
+        .finally(() => setLoading(false));
+    }, 0);
   }, [session, hasClaimed]);
 
   return { streakData, loading };
