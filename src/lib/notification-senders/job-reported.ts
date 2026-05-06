@@ -43,7 +43,6 @@ export async function sendJobReportedAdminEmail(
   listingTitle: string,
   companyName: string,
   reportCount: number,
-  listingId: string,
 ) {
   const adminEmail = await getAdminNotificationEmail();
   if (!adminEmail) return;

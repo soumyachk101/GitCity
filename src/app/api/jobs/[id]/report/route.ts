@@ -66,7 +66,7 @@ export async function POST(
       const comp = updated.company as unknown as { name: string; advertiser_id: string | null };
 
       // Notify admin
-      sendJobReportedAdminEmail(updated.title, comp.name, count, id).catch((err) =>
+      sendJobReportedAdminEmail(updated.title, comp.name, count).catch((err) =>
         console.error("[job-notify] Failed to send report admin email:", err),
       );
 

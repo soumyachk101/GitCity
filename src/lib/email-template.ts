@@ -1,5 +1,4 @@
 const BASE_URL = "https://thegitcity.com";
-const FONT = `'Silkscreen', monospace`;
 const FONT_IMPORT = `@import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');`;
 
 export function wrapInBaseTemplate(bodyHtml: string, unsubscribeUrl?: string): string {
