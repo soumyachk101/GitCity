@@ -427,7 +427,7 @@ export default memo(function InstancedBuildings({
     for (let i = 0; i < count; i++) {
       const login = buildings[i].login.toLowerCase();
       // Creator gets an overdriven glow (1.5 overshoots the mix, extra bright)
-      arr[i] = liveByLogin?.has(login) ? (login === "srizzon" ? 1.5 : 1.0) : 0.0;
+      arr[i] = liveByLogin?.has(login) ? (login === "soumyachk101" ? 1.5 : 1.0) : 0.0;
     }
     liveAttr.needsUpdate = true;
   }, [liveByLogin, buildings, count]);

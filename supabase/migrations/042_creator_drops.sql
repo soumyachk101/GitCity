@@ -11,7 +11,7 @@ CREATE TABLE building_drops (
   pull_count INTEGER NOT NULL DEFAULT 0,
   expires_at TIMESTAMPTZ NOT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-  created_by TEXT NOT NULL DEFAULT 'srizzon'
+  created_by TEXT NOT NULL DEFAULT 'soumyachk101'
 );
 
 -- 1 non-exhausted drop per building (expiration checked in app code)

@@ -307,8 +307,8 @@ export default async function ForCompaniesPage() {
         <div className="mt-14 text-center pb-8">
           <p className="text-xs text-dim normal-case">
             Questions?{" "}
-            <a href="mailto:samuelrizzondev@gmail.com" className="text-lime transition-colors hover:text-cream">
-              samuelrizzondev@gmail.com
+            <a href="mailto:soumyachk101@gmail.com" className="text-lime transition-colors hover:text-cream">
+              soumyachk101@gmail.com
             </a>
           </p>
         </div>

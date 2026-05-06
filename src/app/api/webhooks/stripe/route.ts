@@ -262,7 +262,7 @@ export async function POST(request: Request) {
             const resend = getResend();
             await resend.emails.send({
               from: "Git City Ads <ads@thegitcity.com>",
-              to: "samuelrizzondev@gmail.com",
+              to: "soumyachk101@gmail.com",
               subject: isLandmark
                 ? `[ACTION REQUIRED] New Landmark sale — ${totalFormatted}/mo`
                 : `New ${pkg?.label ?? packageId} sale — ${totalFormatted}/mo`,

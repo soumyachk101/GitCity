@@ -34,10 +34,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    creator: "@samuelrizzondev",
-    site: "@samuelrizzondev",
+    creator: "@soumyachk101",
+    site: "@soumyachk101",
   },
-  authors: [{ name: "Samuel Rizzon", url: "https://x.com/samuelrizzondev" }],
+  authors: [{ name: "Soumya Chakraborty", url: "https://x.com/soumyachk101" }],
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-icon.png",
@@ -61,8 +61,8 @@ const jsonLd = {
   operatingSystem: "Web",
   author: {
     "@type": "Person",
-    name: "Samuel Rizzon",
-    url: "https://x.com/samuelrizzondev",
+    name: "Soumya Chakraborty",
+    url: "https://x.com/soumyachk101",
   },
   offers: {
     "@type": "Offer",

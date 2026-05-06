@@ -61,8 +61,8 @@ export default function TermsPage() {
 
           <Section n={4} title="Intellectual Property">
             <p>
-              Git City, its code, design, and branding are owned by Samuel
-              Rizzon. Your GitHub data remains yours. By using the service, you
+              Git City, its code, design, and branding are owned by Soumya
+              Chakraborty. Your GitHub data remains yours. By using the service, you
               grant us a limited license to display your public GitHub data as
               part of the city visualization.
             </p>
@@ -88,7 +88,7 @@ export default function TermsPage() {
 
           <Section n={7} title="Limitation of Liability">
             <p>
-              To the maximum extent permitted by law, Samuel Rizzon and Git City
+              To the maximum extent permitted by law, Soumya Chakraborty and Git City
               shall not be liable for any indirect, incidental, special, or
               consequential damages arising from your use of the service.
             </p>
@@ -97,7 +97,7 @@ export default function TermsPage() {
           <Section n={8} title="Third-Party Token">
             <p>
               A token called $GITC exists on the Base blockchain. This token was
-              created by the community, not by Git City or Samuel Rizzon. We do
+              created by the community, not by Git City or Soumya Chakraborty. We do
               not control, manage, or endorse the token. Any interaction with the
               token is entirely at your own risk. See the{" "}
               <a
@@ -122,13 +122,13 @@ export default function TermsPage() {
             <p>
               Questions? Reach out at{" "}
               <a
-                href="https://x.com/samuelrizzondev"
+                href="https://x.com/soumyachk101"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-colors hover:text-cream"
                 style={{ color: ACCENT }}
               >
-                @samuelrizzondev
+                @soumyachk101
               </a>{" "}
               on X.
             </p>
