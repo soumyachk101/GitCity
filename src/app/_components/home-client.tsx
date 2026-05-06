@@ -3570,13 +3570,13 @@ function HomeContent({ resolvedSponsors }: HomeContentProps) {
               <p className="pointer-events-auto mt-1 text-[9px] text-cream/50 normal-case hidden sm:block">
                 built by{" "}
                 <a
-                  href="https://x.com/samuelrizzondev"
+                  href="https://x.com/soumyachk101"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transition-colors hover:text-cream"
                   style={{ color: theme.accent }}
                 >
-                  @samuelrizzondev
+                  @soumyachk101
                 </a>
               </p>
             </div>

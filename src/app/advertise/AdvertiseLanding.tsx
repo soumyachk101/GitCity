@@ -557,23 +557,23 @@ export default function AdvertiseLanding() {
         <p className="text-xs text-muted normal-case">
           Questions?{" "}
           <a
-            href="mailto:samuel@thegitcity.com"
+            href="mailto:soumya@thegitcity.com"
             className="transition-colors hover:text-cream"
             style={{ color: ACCENT }}
           >
-            samuel@thegitcity.com
+            soumya@thegitcity.com
           </a>
         </p>
         <p className="mt-4 text-xs text-muted normal-case">
           Built by{" "}
           <a
-            href="https://x.com/samuelrizzondev"
+            href="https://x.com/soumyachk101"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-colors hover:text-cream"
             style={{ color: ACCENT }}
           >
-            @samuelrizzondev
+            @soumyachk101
           </a>
         </p>
       </footer>
@@ -758,7 +758,7 @@ export default function AdvertiseLanding() {
                   Got it.
                 </p>
                 <p className="mt-3 text-xs leading-relaxed text-muted normal-case">
-                  Samuel will reply to{" "}
+                  Soumya will reply to{" "}
                   <span className="text-cream">{cEmail}</span> with pricing and
                   next steps for your custom 3D building.
                 </p>
@@ -893,11 +893,11 @@ export default function AdvertiseLanding() {
                   <p className="text-center text-[9px] text-muted normal-case">
                     Or email{" "}
                     <a
-                      href="mailto:samuel@thegitcity.com"
-                      className="hover:text-cream"
+                      href="mailto:soumya@thegitcity.com"
+                      className="hover:text-cream transition-colors"
                       style={{ color: ACCENT }}
                     >
-                      samuel@thegitcity.com
+                      soumya@thegitcity.com
                     </a>{" "}
                     directly.
                   </p>

@@ -144,13 +144,13 @@ export default function PrivacyPage() {
             <p>
               Questions about your data? Reach out at{" "}
               <a
-                href="https://x.com/samuelrizzondev"
+                href="https://x.com/soumyachk101"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-colors hover:text-cream"
                 style={{ color: ACCENT }}
               >
-                @samuelrizzondev
+                @soumyachk101
               </a>{" "}
               on X.
             </p>

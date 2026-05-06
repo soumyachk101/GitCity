@@ -519,10 +519,10 @@ function SlideFounder() {
               className="flex h-20 w-20 items-center justify-center border-[3px] border-border text-3xl sm:h-24 sm:w-24 sm:text-4xl"
               style={{ color: ACCENT }}
             >
-              SR
+              SC
             </div>
             <div>
-              <p className="text-2xl text-cream sm:text-3xl">Samuel Rizzon</p>
+              <p className="text-2xl text-cream sm:text-3xl">Soumya Chakraborty</p>
               <p className="mt-1 text-sm text-muted normal-case sm:text-base">
                 Solo Founder & Full-Stack Developer
               </p>
@@ -616,10 +616,10 @@ function SlideContact() {
           @soumyachk101 on X
         </a>
         <a
-          href="mailto:samuelrizzondev@gmail.com"
+          href="mailto:soumya@thegitcity.com"
           className="border-[3px] border-border bg-bg-raised px-8 py-4 text-base text-cream transition-colors hover:border-border-light sm:text-lg"
         >
-          samuelrizzondev@gmail.com
+          soumya@thegitcity.com
         </a>
       </div>
       <p className="mt-4 text-sm text-muted normal-case sm:text-base">
