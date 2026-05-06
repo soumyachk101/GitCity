@@ -12,7 +12,6 @@ export async function sendJobPendingReviewEmail(
   listingTitle: string,
   companyName: string,
   tier: string,
-  listingId: string,
 ) {
   const adminEmail = await getAdminNotificationEmail();
   if (!adminEmail) return;

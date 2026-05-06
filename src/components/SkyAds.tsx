@@ -148,7 +148,7 @@ function BannerPlane({
   cityRadius?: number;
   flyMode: boolean;
   onAdClick?: (ad: SkyAd) => void;
-  meshRef?: React.Ref<THREE.Mesh>;
+  meshRef?: (el: THREE.Mesh | null) => void;
 }) {
   const groupRef = useRef<THREE.Group>(null);
   const { scene } = useGLTF("/models/paper-plane.glb");
@@ -227,7 +227,7 @@ function BannerPlane({
 
     // Scroll LED text
     if (needsScroll) {
-      tex.offset.x = (t * SCROLL_SPEED) % 1;
+      tex.offset.setX((t * SCROLL_SPEED) % 1);
     }
   });
 
@@ -249,7 +249,7 @@ function BannerPlane({
     };
   }, []);
 
-  const handleClick = (e: any) => {
+  const handleClick = (e: THREE.Event | React.MouseEvent) => {
     e.stopPropagation();
     if (flyMode) return;
     onAdClick?.(ad);
@@ -283,10 +283,7 @@ function BannerPlane({
       <mesh
         ref={(el) => {
           side1Ref.current = el;
-          if (typeof meshRef === "function") meshRef(el);
-          else if (meshRef && "current" in meshRef) {
-            (meshRef as React.MutableRefObject<THREE.Mesh | null>).current = el;
-          }
+          if (meshRef) meshRef(el);
         }}
         material={ledMat}
         position={[0.15, bannerY, bannerZ]}
@@ -328,7 +325,7 @@ function Blimp({
   cityRadius?: number;
   flyMode: boolean;
   onAdClick?: (ad: SkyAd) => void;
-  screenRef?: React.Ref<THREE.Mesh>;
+  screenRef?: (el: THREE.Mesh | null) => void;
 }) {
   const groupRef = useRef<THREE.Group>(null);
 
@@ -382,7 +379,7 @@ function Blimp({
 
     // Scroll LED text
     if (needsScroll) {
-      tex.offset.x = (t * SCROLL_SPEED) % 1;
+      tex.offset.setX((t * SCROLL_SPEED) % 1);
     }
   });
 
@@ -404,7 +401,7 @@ function Blimp({
     };
   }, []);
 
-  const handleClick = (e: any) => {
+  const handleClick = (e: THREE.Event | React.MouseEvent) => {
     e.stopPropagation();
     if (flyMode) return;
     onAdClick?.(ad);
@@ -513,10 +510,7 @@ function Blimp({
       <mesh
         ref={(el) => {
           screen1Ref.current = el;
-          if (typeof screenRef === "function") screenRef(el);
-          else if (screenRef && "current" in screenRef) {
-            (screenRef as React.MutableRefObject<THREE.Mesh | null>).current = el;
-          }
+          if (screenRef) screenRef(el);
         }}
         material={ledMat}
         position={[10.8, -2, 0]}

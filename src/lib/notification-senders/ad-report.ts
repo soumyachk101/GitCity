@@ -1,5 +1,5 @@
 import { getResend } from "@/lib/resend";
-import { wrapInBaseTemplate, buildButton, escapeHtml } from "@/lib/email-template";
+import { wrapInBaseTemplate, escapeHtml } from "@/lib/email-template";
 
 interface AdReport {
   advertiserEmail: string;

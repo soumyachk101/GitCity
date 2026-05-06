@@ -326,7 +326,6 @@ export async function POST(request: Request) {
               paidListing.title,
               compName,
               session.metadata.tier ?? "standard",
-              listingId,
             ).catch((err) => console.error("[job-notify] Failed to send pending review email:", err));
           }
 

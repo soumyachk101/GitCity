@@ -20,7 +20,6 @@ const MOVE_INTERVAL_SEC = 0.15; // Matches LERP_DURATION in page.tsx — each le
 // ─── State ────────────────────────────────────────────────────
 const heldKeys = new Set<Direction>();
 let moveCooldown = 0;
-let lastActiveDir: Direction | null = null;
 let moveCallback: MoveCallback | null = null;
 let typingCheck: (() => boolean) | null = null;
 
@@ -37,14 +36,12 @@ export function updateMovement(dt: number): void {
 
   const dir = getActiveDir();
   if (!dir) {
-    lastActiveDir = null;
     return;
   }
 
   moveCooldown -= dt;
   if (moveCooldown <= 0) {
     moveCallback(dir);
-    lastActiveDir = dir;
     moveCooldown = MOVE_INTERVAL_SEC;
   }
 }
@@ -84,7 +81,6 @@ export function attachInput(
 
   const onBlur = () => {
     heldKeys.clear();
-    lastActiveDir = null;
     moveCooldown = 0;
   };
 
@@ -96,7 +92,6 @@ export function attachInput(
     moveCallback = null;
     typingCheck = null;
     heldKeys.clear();
-    lastActiveDir = null;
     moveCooldown = 0;
     window.removeEventListener("keydown", onKeyDown);
     window.removeEventListener("keyup", onKeyUp);

@@ -734,6 +734,7 @@ export default memo(function ThemeSkyFX({ themeIndex, theme }: Props) {
         const height = skyD(260);   // reduced from 420 — ring is less dominating
         // 160 segments = smoother ring, openEnded
         return new THREE.CylinderGeometry(radius, radius, height, 160, 1, true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [themeIndex, skyScale, skyD]);
 
     const { auroraRingMat0, auroraRingMat1 } = useMemo(() => {
@@ -773,6 +774,7 @@ export default memo(function ThemeSkyFX({ themeIndex, theme }: Props) {
     const sunsetHazeGeo = useMemo(() => {
         if (themeIndex !== 1) return null;
         return new THREE.SphereGeometry(skyD(1200), 48, 24);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [themeIndex, skyScale, skyD]);
 
     const sunsetHazeMat = useMemo(() => {
@@ -792,6 +794,7 @@ export default memo(function ThemeSkyFX({ themeIndex, theme }: Props) {
     const sunsetCirrusGeo = useMemo(() => {
         if (themeIndex !== 1) return null;
         return new THREE.SphereGeometry(skyD(1300), 48, 24);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [themeIndex, skyScale, skyD]);
 
     const sunsetCirrusMat = useMemo(() => {
@@ -891,6 +894,7 @@ export default memo(function ThemeSkyFX({ themeIndex, theme }: Props) {
             Math.sin(elevRad) * d,
             -Math.sin(azRad) * Math.cos(elevRad) * d
         );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [themeIndex, skyScale, skyD]);
 
     // Runtime disc scale (angular size preserved as depth changes)

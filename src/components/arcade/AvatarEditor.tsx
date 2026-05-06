@@ -217,7 +217,7 @@ function SidebarIcon({ catId, items, skinColor, ready }: { catId: string; items:
 
 // ─── Purchase Summary ───────────────────────────────────────
 function PurchaseSummary({
-  loadout, items, balance, buying, saving, showPxPacks,
+  loadout, items, balance, buying, saving,
   onBuyAll, onGetPx, onSave, onCancel,
 }: {
   loadout: AvatarLoadout;
@@ -225,7 +225,6 @@ function PurchaseSummary({
   balance: number;
   buying: string | null;
   saving: boolean;
-  showPxPacks: boolean;
   onBuyAll: (items: ShopItem[]) => void;
   onGetPx: () => void;
   onSave: () => void;
@@ -601,10 +600,6 @@ export default function AvatarEditor({ onClose, onSave, initialLoadout, playerNa
     }
   };
 
-  // Confirm buy with a second click
-  const [confirmBuyId, setConfirmBuyId] = useState<string | null>(null);
-  // Track which items the user actively selected (vs what was in initial loadout)
-  const [userSelectedIds, setUserSelectedIds] = useState<Set<string>>(new Set());
 
   // Save loadout
   const handleSave = async () => {
@@ -665,14 +660,6 @@ export default function AvatarEditor({ onClose, onSave, initialLoadout, playerNa
   const currentColor = getCurrentColor();
   const activeCat = CATEGORIES.find((c) => c.id === activeCategory);
 
-  // Get equipped item icon for sidebar
-  const getEquippedIcon = (cat: CategoryDef): ShopItem | null => {
-    if (cat.id === "skin" || cat.id === "face") return null;
-    const key = cat.loadoutKey as keyof AvatarLoadout;
-    const id = loadout[key];
-    if (!id) return null;
-    return items.find((i) => i.id === id) ?? null;
-  };
 
   return (
     <div className="absolute inset-0 z-[60] flex items-center justify-center bg-black/50">
@@ -695,9 +682,7 @@ export default function AvatarEditor({ onClose, onSave, initialLoadout, playerNa
         <div className="flex flex-1 min-h-0">
           {/* Left: Category sidebar */}
           <div className="w-[160px] border-r border-gray-200 py-2 overflow-y-auto overflow-x-hidden flex-shrink-0">
-            {CATEGORIES.map((cat) => {
-              const equipped = getEquippedIcon(cat);
-              return (
+            {CATEGORIES.map((cat) => (
                 <button
                   key={cat.id}
                   onClick={() => { setActiveCategory(cat.id); setShowPxPacks(false); }}
@@ -710,8 +695,7 @@ export default function AvatarEditor({ onClose, onSave, initialLoadout, playerNa
                   <SidebarIcon catId={cat.id} items={items} skinColor={loadout.skin_color} ready={imagesReady} />
                   {cat.label}
                 </button>
-              );
-            })}
+            ))}
           </div>
 
           {/* Center: Items grid + colors */}
@@ -751,8 +735,6 @@ export default function AvatarEditor({ onClose, onSave, initialLoadout, playerNa
                         key={item.id}
                         onClick={() => {
                           equipFaceItem(item);
-                          setConfirmBuyId(null);
-                          setUserSelectedIds((s) => new Set(s).add(item.id));
                         }}
                         className={`relative flex flex-col items-center gap-1 p-2 rounded-lg border-2 transition-all cursor-pointer ${
                           isActive ? "border-blue-500 bg-blue-50" : "border-gray-200 hover:border-gray-300"
@@ -828,8 +810,6 @@ export default function AvatarEditor({ onClose, onSave, initialLoadout, playerNa
                         key={item.id}
                         onClick={() => {
                           equipItem(item);
-                          setConfirmBuyId(null);
-                          if (item.id !== "bald") setUserSelectedIds((s) => new Set(s).add(item.id));
                         }}
                         className={`relative flex flex-col items-center gap-1 p-2 rounded-lg border-2 transition-all cursor-pointer ${
                           equipped
@@ -918,7 +898,6 @@ export default function AvatarEditor({ onClose, onSave, initialLoadout, playerNa
               balance={balance}
               buying={buying}
               saving={saving}
-              showPxPacks={showPxPacks}
               onBuyAll={async (toBuy) => {
                 for (const item of toBuy) {
                   await buyItem(item);

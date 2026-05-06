@@ -123,7 +123,7 @@ function PlanePreviewScene({ text, color, bgColor }: AdProps) {
   }, [tex, ledMat, ropeLine]);
 
   useFrame(({ clock }) => {
-    if (needsScroll) tex.offset.x = (clock.elapsedTime * SCROLL_SPEED) % 1;
+    if (needsScroll) tex.offset.setX((clock.elapsedTime * SCROLL_SPEED) % 1);
   });
 
   return (
@@ -167,7 +167,7 @@ function BlimpPreviewScene({ text, color, bgColor }: AdProps) {
   useEffect(() => () => { tex.dispose(); ledMat.dispose(); }, [tex, ledMat]);
 
   useFrame(({ clock }) => {
-    if (needsScroll) tex.offset.x = (clock.elapsedTime * SCROLL_SPEED) % 1;
+    if (needsScroll) tex.offset.setX((clock.elapsedTime * SCROLL_SPEED) % 1);
   });
 
   return (
@@ -252,7 +252,7 @@ function BillboardPreviewScene({ text, color, bgColor }: AdProps) {
 
   useFrame(({ clock }) => {
     if (groupRef.current) groupRef.current.position.y = Math.sin(clock.elapsedTime * 0.5) * 0.3;
-    if (needsScroll) tex.offset.x = (clock.elapsedTime * SCROLL_SPEED) % 1;
+    if (needsScroll) tex.offset.setX((clock.elapsedTime * SCROLL_SPEED) % 1);
   });
 
   const panelW = B_W * 0.9;
@@ -310,7 +310,7 @@ function RooftopSignPreviewScene({ text, color, bgColor }: AdProps) {
   useFrame(({ clock }, delta) => {
     if (groupRef.current) groupRef.current.position.y = Math.sin(clock.elapsedTime * 0.5) * 0.3;
     if (spinRef.current) spinRef.current.rotation.y += 0.4 * Math.min(delta, 0.05);
-    if (needsScroll) tex.offset.x = (clock.elapsedTime * SCROLL_SPEED) % 1;
+    if (needsScroll) tex.offset.setX((clock.elapsedTime * SCROLL_SPEED) % 1);
   });
 
   const signW = B_W * 1.2;
@@ -379,7 +379,7 @@ function LedWrapPreviewScene({ text, color, bgColor }: AdProps) {
   useFrame(({ clock }) => {
     if (groupRef.current) groupRef.current.position.y = Math.sin(clock.elapsedTime * 0.5) * 0.3;
     const t = clock.elapsedTime;
-    if (needsScroll) tex.offset.x = (t * SCROLL_SPEED * 0.8) % 1;
+    if (needsScroll) tex.offset.setX((t * SCROLL_SPEED * 0.8) % 1);
     ledMat.emissiveIntensity = 1.3 + Math.sin(t * 3) * 0.5;
     accentMat.emissiveIntensity = 1.5 + Math.sin(t * 3 + 1) * 0.8;
   });

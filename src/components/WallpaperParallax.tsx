@@ -4,7 +4,7 @@ import { useRef, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 
 interface Props {
-  controlsRef: React.RefObject<any>;
+  controlsRef: React.RefObject<{ target: { x: number; z: number } }>;
   baseTarget: [number, number, number];
 }
 

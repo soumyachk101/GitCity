@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
 
     if (pendingListing) {
       const compName = (pendingListing.company as unknown as { name: string }).name;
-      sendJobPendingReviewEmail(pendingListing.title, compName, "free", listing_id).catch((err) =>
+      sendJobPendingReviewEmail(pendingListing.title, compName, "free").catch((err) =>
         console.error("[job-notify] Failed to send pending review email:", err),
       );
     }

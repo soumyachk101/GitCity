@@ -436,7 +436,7 @@ export default function EditorMode({ map, canvas, slug, onSave, onExit }: Editor
         const gy = ed.ghostTileY * ts;
         const gw = ed.selectedItem.tw * ts;
         const gh = ed.selectedItem.th * ts;
-        const validColor = ed.ghostValid ? "rgba(80, 200, 80," : "rgba(200, 80, 80,";
+
         if (ed.selectedItem.placement === "wall") {
           ctx.fillStyle = ed.ghostValid ? "rgba(80, 140, 240, 0.2)" : "rgba(200, 80, 80, 0.25)";
         } else if (ed.selectedItem.placement === "rug") {
@@ -657,7 +657,7 @@ export default function EditorMode({ map, canvas, slug, onSave, onExit }: Editor
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [onExit]);
+  }, [onExit, map, ts]);
 
   // ─── Rebuild interactive objects from furniture ─────────────
   const rebuildObjects = (furn: PlacedFurniture[]): typeof map.objects => {
@@ -697,7 +697,11 @@ export default function EditorMode({ map, canvas, slug, onSave, onExit }: Editor
   const handleSave = async () => {
     setSaving(true);
     try {
-      const cleanFurniture = furniture.map(({ catalogId, ...f }) => f);
+      const cleanFurniture = furniture.map((f) => {
+        const rest = { ...f };
+        delete (rest as any).catalogId;
+        return rest;
+      });
       const newObjects = rebuildObjects(furniture);
       const updatedMap: GameMap = {
         ...map,
@@ -722,7 +726,11 @@ export default function EditorMode({ map, canvas, slug, onSave, onExit }: Editor
 
   // ─── Sync furniture to map for live preview ────────────────
   useEffect(() => {
-    map.furniture = furniture.map(({ catalogId, ...f }) => f);
+    map.furniture = furniture.map((f) => {
+      const rest = { ...f };
+      delete (rest as any).catalogId;
+      return rest;
+    });
     // Rebuild collision so gameplay stays consistent
     if (map.tileProperties) {
       rebuildCollision(map);

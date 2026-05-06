@@ -146,7 +146,6 @@ export async function PATCH(
           resubmittedListing.title,
           resubCompanyName,
           resubmittedListing.tier,
-          id,
         ).catch((err) => console.error("Failed to send resubmit review email:", err));
       }
       break;

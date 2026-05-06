@@ -110,7 +110,7 @@ export default function ArcadeGameOverlay({
   const [displayMs, setDisplayMs] = useState(0);
   const [stoppedMs, setStoppedMs] = useState(0);
   const [serverResult, setServerResult] = useState<GameResult | null>(null);
-  const [serverTimeout, setServerTimeout] = useState(false);
+
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [leaderboardLoading, setLeaderboardLoading] = useState(true);
   // Track personal best locally for instant feedback
@@ -156,7 +156,6 @@ export default function ArcadeGameOverlay({
     setDisplayMs(0);
     setStoppedMs(0);
     setServerResult(null);
-    setServerTimeout(false);
     startRef.current = performance.now();
     rafRef.current = requestAnimationFrame(tickTimer);
     sendGameStart("10s_classic");
@@ -178,10 +177,8 @@ export default function ArcadeGameOverlay({
     stateRef.current = "result";
     setState("result");
     setServerResult(null);
-    setServerTimeout(false);
     sendGameStop("10s_classic");
     setTimeout(fetchLeaderboard, 2000);
-    setTimeout(() => setServerTimeout(true), 5000);
   };
 
   const doClose = () => {
