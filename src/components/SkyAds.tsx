@@ -145,7 +145,7 @@ function BannerPlane({
   ad: SkyAd;
   index: number;
   total: number;
-  cityRadius: number;
+  cityRadius?: number;
   flyMode: boolean;
   onAdClick?: (ad: SkyAd) => void;
   meshRef?: React.Ref<THREE.Mesh>;
@@ -281,10 +281,12 @@ function BannerPlane({
 
       {/* LED banner — side 1 (faces +X) */}
       <mesh
-        ref={(el: THREE.Mesh | null) => {
+        ref={(el) => {
           side1Ref.current = el;
           if (typeof meshRef === "function") meshRef(el);
-          else if (meshRef && "current" in meshRef) (meshRef as React.MutableRefObject<THREE.Mesh | null>).current = el;
+          else if (meshRef && "current" in meshRef) {
+            (meshRef as React.MutableRefObject<THREE.Mesh | null>).current = el;
+          }
         }}
         material={ledMat}
         position={[0.15, bannerY, bannerZ]}
@@ -323,7 +325,7 @@ function Blimp({
   ad: SkyAd;
   index: number;
   total: number;
-  cityRadius: number;
+  cityRadius?: number;
   flyMode: boolean;
   onAdClick?: (ad: SkyAd) => void;
   screenRef?: React.Ref<THREE.Mesh>;
@@ -509,10 +511,12 @@ function Blimp({
 
       {/* LED Screen — left side (+X) */}
       <mesh
-        ref={(el: THREE.Mesh | null) => {
+        ref={(el) => {
           screen1Ref.current = el;
           if (typeof screenRef === "function") screenRef(el);
-          else if (screenRef && "current" in screenRef) (screenRef as React.MutableRefObject<THREE.Mesh | null>).current = el;
+          else if (screenRef && "current" in screenRef) {
+            (screenRef as React.MutableRefObject<THREE.Mesh | null>).current = el;
+          }
         }}
         material={ledMat}
         position={[10.8, -2, 0]}

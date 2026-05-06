@@ -134,4 +134,4 @@ Run `npm install` to pick up any new dependencies, then `npm run lint` to surfac
 
 ## Questions?
 
-Open an issue or reach out on [X/Twitter](https://x.com/samuelrizzondev).
+Open an issue or reach out on [X/Twitter](https://x.com/soumyachk101).

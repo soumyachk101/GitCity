@@ -117,5 +117,5 @@ Create a token, copy it once, and place it in `GITHUB_TOKEN` inside `.env.local`
 ---
 
 <p align="center">
-  Built by <a href="https://x.com/samuelrizzondev">@samuelrizzondev</a>
+  Built by <a href="https://x.com/soumyachk101">@soumyachk101</a>
 </p>
